@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const notes = require('../models/notes-memory');
 
-//  Add Note
+//  Add Note (create)
 router.get('/add', (req, res, next) => {
     res.render('noteedit', {
         title: "Add a Note", 
@@ -26,5 +26,13 @@ router.post('/save', async (req, res, next) => {
 });
 
 //  Read Note (read)
+router.get('/view', async (req, res, next) => {
+    const note = await notes.read(req.query.key);
+    res.render('noteview', {
+        title: note ? note.title : "",
+        notekey: req.query.key,
+        note: note
+    });
+});
 
 module.exports = router;
