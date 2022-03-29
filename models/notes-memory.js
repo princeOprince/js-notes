@@ -14,7 +14,7 @@ exports.read = async function(key) {
         throw new Error(`Note ${key} does not exist`);
 };
 
-exports.delete = async function(key) {
+exports.destroy = async function(key) {
     if (notes[key]) {
         delete notes[key];
     }

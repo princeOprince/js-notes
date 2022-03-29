@@ -46,4 +46,20 @@ router.get('/edit', async (req, res, next) => {
     });
 });
 
+//  Ask to delete Note (destroy)
+router.get('/destroy', async (req, res, next) => {
+    const note = await notes.read(req.query.key);
+    res.render('notedestroy', {
+        title: note ? note.title : "",
+        notekey: req.query.key,
+        note: note
+    });
+});
+
+//  Really destroy Note (destroy)
+router.post('/destroy/confirm', async (req, res, next) => {
+    await notes.destroy(req.body.notekey);
+    res.redirect('/');
+});
+
 module.exports = router;
