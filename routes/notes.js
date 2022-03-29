@@ -13,7 +13,7 @@ router.get('/add', (req, res, next) => {
     });
 });
 
-//  Save Note (update)
+//  Save Note (create / update)
 router.post('/save', async (req, res, next) => {
     let note;
     if (req.body.docreate === "create") {
@@ -30,6 +30,17 @@ router.get('/view', async (req, res, next) => {
     const note = await notes.read(req.query.key);
     res.render('noteview', {
         title: note ? note.title : "",
+        notekey: req.query.key,
+        note: note
+    });
+});
+
+//  Edit Note (update)
+router.get('/edit', async (req, res, next) => {
+    const note = await notes.read(req.query.key);
+    res.render('noteedit', {
+        title: note ? ("Edit " + note.title) : "Add a Note",
+        docreate: false,
         notekey: req.query.key,
         note: note
     });
