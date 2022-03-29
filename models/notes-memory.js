@@ -25,5 +25,3 @@ exports.delete = async function(key) {
 exports.keylist = async function() { return Object.keys(notes); };
 exports.count = async function() { return notes.length; };
 exports.close = async function() { };
-
-
