@@ -8,7 +8,9 @@
     "server2": "cross-env DEBUG=notes:* PORT=3002 node ./bin/www"
   },
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "cookie-parser": "~1.4.4",
+    "cross-env": "^7.0.3",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "hbs": "~4.0.4",
