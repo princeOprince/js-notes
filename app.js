@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs =  require('hbs');
 
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index.mjs');
 // const usersRouter = require('./routes/users');
 const notesRouter = require('./routes/notes');
 
@@ -25,6 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/assets/vendor/bootstrap', 
     express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
+app.use('/assets/vendor/feather-icons', 
+    express.static(path.join(__dirname, 'node_modules', 'feather-icons', 'dist')));
 
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
