@@ -1,13 +1,20 @@
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const hbs =  require('hbs');
+import { default as createError } from 'http-errors';
+import { default as express } from 'express';
+import * as path from 'path';
+//  import * as favicon from ''serve-favicon";
+import { default as cookieParser } from 'cookie-parser';
+import { default as logger } from 'morgan';
+import { default as hbs } from 'hbs';
+import * as http from "http";
+import { approotdir } from './approotdir.mjs';
+const __dirname = approotdir;
+import {
+    normalisePort, onError, onListening, handle404, basicErrorHandler
+} from "./appsupport.mjs";
 
-const indexRouter = require('./routes/index.mjs');
-// const usersRouter = require('./routes/users');
-const notesRouter = require('./routes/notes');
+import { router as indexRouter } from './routes/index.mjs';
+// import { default as express } usersRouter = require('./routes/users');
+import { router as notesRouter } from './routes/notes.mjs';
 
 const app = express();
 
