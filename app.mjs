@@ -6,8 +6,7 @@ import { default as cookieParser } from 'cookie-parser';
 import { default as logger } from 'morgan';
 import { default as hbs } from 'hbs';
 import * as http from "http";
-import { approotdir } from './approotdir.mjs';
-const __dirname = approotdir;
+import __dirname from './approotdir.mjs';
 import {
     normalisePort, onError, onListening, handle404, basicErrorHandler
 } from "./appsupport.mjs";
