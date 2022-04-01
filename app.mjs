@@ -15,14 +15,14 @@ import { router as indexRouter } from './routes/index.mjs';
 // import { default as express } usersRouter = require('./routes/users');
 import { router as notesRouter } from './routes/notes.mjs';
 
-const app = express();
+export const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
 hbs.registerPartials(path.join(__dirname, 'partials'));
 
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,24 +34,19 @@ app.use('/assets/vendor/bootstrap',
 app.use('/assets/vendor/feather-icons', 
     express.static(path.join(__dirname, 'node_modules', 'feather-icons', 'dist')));
 
+//  router function lists
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/notes', notesRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+//  error handlers
+app.use(handle404);     // catch 404 and forward to error handler
+app.use(basicErrorHandler);
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+export const port = normalisePort(process.env.PORT || '3000');
+app.set('port', port);
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
+export const server = http.createServer(app);
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
