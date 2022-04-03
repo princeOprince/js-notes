@@ -1,4 +1,4 @@
-const Note = require('./Note');
+const Note = require('./Note.mjs');
 
 let notes = [];
 

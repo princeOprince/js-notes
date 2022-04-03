@@ -2,7 +2,7 @@ const _note_key = Symbol('Key');
 const _note_title = Symbol('title');
 const _note_body = Symbol('body');
 
-module.exports = class Note {
+export class Note {
     constructor(key, title, body) {
         this[_note_key] = key;
         this[_note_title] = title;
@@ -15,3 +15,13 @@ module.exports = class Note {
     get body() { return this[_note_body]; }
     set body(newBody) { this[_note_body] = newBody; }
 };
+
+export class AbstractNotesStore {
+    async close() { }
+    async update(key, title, body) { }
+    async create(key, title, body) { }
+    async read(key) { }
+    async destroy(key) { }
+    async keylist() { }
+    async count() { }
+}
