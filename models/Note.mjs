@@ -1,19 +1,19 @@
-const _note_key = Symbol('Key');
-const _note_title = Symbol('title');
-const _note_body = Symbol('body');
-
 export class Note {
+    #note_key;
+    #note_title;
+    #note_body;
+    
     constructor(key, title, body) {
-        this[_note_key] = key;
-        this[_note_title] = title;
-        this[_note_body] = body;
+        this.#note_key = key;
+        this.#note_title = title;
+        this.#note_body = body;
     }
 
-    get key() { return this[_note_key]; }
-    get title() { return this[_note_title]; }
-    set title(newTitle) { this[_note_title] = newTitle; }
-    get body() { return this[_note_body]; }
-    set body(newBody) { this[_note_body] = newBody; }
+    get key() { return this.#note_key; }
+    get title() { return this.#note_title; }
+    set title(newTitle) { this.#note_title = newTitle; }
+    get body() { return this.#note_body; }
+    set body(newBody) { this.#note_body = newBody; }
 };
 
 export class AbstractNotesStore {

@@ -5,7 +5,8 @@
   "scripts": {
     "start": "cross-env DEBUG=notes:* nodemon ./bin/www",
     "server1": "cross-env DEBUG=notes:* PORT=3001 node ./bin/www",
-    "server2": "cross-env DEBUG=notes:* PORT=3002 node ./bin/www"
+    "server2": "cross-env DEBUG=notes:* PORT=3002 node ./bin/www",
+    "test": "node test/Note-test.mjs"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
