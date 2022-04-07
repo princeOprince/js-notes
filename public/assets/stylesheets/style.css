@@ -2,6 +2,7 @@ body {
   padding: 5px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: black;
+  color: white;
 }
 
 a {
@@ -18,4 +19,16 @@ li {
 
 header {
     color: white;
+}
+
+input, textarea {
+    background: black;
+    color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+input[type=submit] {
+    margin-top: 10px;
 }
