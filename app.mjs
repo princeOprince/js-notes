@@ -1,11 +1,11 @@
-import { default as express } from 'express';
+import express from 'express';
 import * as path from 'path';
 //  import * as favicon from ''serve-favicon";
-import { default as cookieParser } from 'cookie-parser';
-import { default as logger } from 'morgan';
-import { default as hbs } from 'hbs';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import hbs from 'hbs';
 import * as http from "http";
-import __dirname from './approotdir.mjs';
+import __dirname  from './approotdir.mjs';
 import {
     normalisePort, onError, onListening, handle404, basicErrorHandler
 } from "./appsupport.mjs";
@@ -15,7 +15,7 @@ export const NotesStore = new InMemoryNotesStore();
 
 import { router as indexRouter } from './routes/index.mjs';
 // import { default as express } usersRouter = require('./routes/users');
-import { router as notesRouter } from './routes/notes.mjs';
+// import { router as notesRouter } from './routes/notes.mjs';
 
 export const app = express();
 
@@ -39,7 +39,7 @@ app.use('/assets/vendor/feather-icons',
 //  router function lists
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
-app.use('/notes', notesRouter);
+// app.use('/notes', notesRouter);
 
 //  error handlers
 app.use(handle404);     // catch 404 and forward to error handler
