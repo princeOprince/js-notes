@@ -1,5 +1,5 @@
 body {
-  padding: 5px;
+  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: black;
   color: white;
@@ -19,6 +19,9 @@ li {
 
 header {
     color: white;
+    background: rgba(255, 255, 255, .2);
+    padding: 25px;
+    margin-bottom: 20px;
 }
 
 input, textarea {
@@ -26,9 +29,10 @@ input, textarea {
     color: white;
     border: 1px solid gray;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 10px;
 }
 
 input[type=submit] {
     margin-top: 10px;
+    padding: 10px 20px;
 }
