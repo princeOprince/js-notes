@@ -1,7 +1,6 @@
-const util = require('util');
-const express = require('express');
-const router = express.Router();
-const notes = require('../models/notes-memory');
+import express from 'express';
+export const router = express.Router();
+import { NotesStore as notes } from '../app.mjs';
 
 //  Add Note (create)
 router.get('/add', (req, res, next) => {
@@ -15,14 +14,18 @@ router.get('/add', (req, res, next) => {
 
 //  Save Note (create / update)
 router.post('/save', async (req, res, next) => {
-    let note;
-    if (req.body.docreate === "create") {
-        note = await notes.create(req.body.notekey, req.body.title, req.body.body);
+    try {
+        let note;
+        if (req.body.docreate === "create") {
+            note = await notes.create(req.body.notekey, req.body.title, req.body.body);
+        }
+        else {
+            note = await notes.update(req.body.notekey, req.body.title, req.body.body);
+        }
+        res.redirect('/notes/view?key=' + req.body.notekey);
+    } catch (error) {
+        next(err);
     }
-    else {
-        note = await notes.update(req.body.notekey, req.body.title, req.body.body);
-    }
-    res.redirect('/notes/view?key=' + req.body.notekey);
 });
 
 //  Read Note (read)
@@ -61,5 +64,3 @@ router.post('/destroy/confirm', async (req, res, next) => {
     await notes.destroy(req.body.notekey);
     res.redirect('/');
 });
-
-module.exports = router;
