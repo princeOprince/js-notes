@@ -1,5 +1,7 @@
 import { port } from "./app.mjs";
 import { server } from "./app.mjs";
+import debug from "debug";
+const dbg = debug('notes:server');
 
 export function normalisePort(val) {
     const port = parseInt(val);
@@ -36,7 +38,7 @@ export function onListening() {
     const addr = server.address();
     const bind = typeof addr === "string"
                         ? "pipe " + addr : "port " + addr.port;
-    console.log(`Listening on ${bind}`);
+    dbg(`Listening on ${bind}`);
 }
 
 export function handle404(req, res, next) {
