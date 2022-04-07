@@ -1,4 +1,3 @@
-import { default as createError } from 'http-errors';
 import { default as express } from 'express';
 import * as path from 'path';
 //  import * as favicon from ''serve-favicon";
@@ -10,6 +9,9 @@ import __dirname from './approotdir.mjs';
 import {
     normalisePort, onError, onListening, handle404, basicErrorHandler
 } from "./appsupport.mjs";
+
+import { InMemoryNotesStore } from './models/notes-memory.mjs';
+export const NotesStore = new InMemoryNotesStore();
 
 import { router as indexRouter } from './routes/index.mjs';
 // import { default as express } usersRouter = require('./routes/users');

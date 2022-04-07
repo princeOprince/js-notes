@@ -1,7 +1,7 @@
 import { default as express } from 'express';
 export const router = express.Router();
 
-const notes = require('../models/notes-memory');
+import notes from '../models/notes-memory.mjs';
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
