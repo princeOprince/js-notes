@@ -25,12 +25,16 @@ export const saveNote = async (req, res, next) => {
 };
 
 export const viewNote = async (req, res, next) => {
-    const note = await notes.read(req.query.key);
-    res.render('noteview', {
-        title: note ? note.title : "",
-        notekey: req.query.key,
-        note: note
-    });
+    try {
+        const note = await notes.read(req.query.key);
+        res.render('noteview', {
+            title: note ? note.title : "",
+            notekey: req.query.key,
+            note: note
+        });
+    } catch (error) {
+        next(error);
+    }
 };
 
 export const editNote =  async (req, res, next) => {
