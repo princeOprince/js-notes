@@ -20,7 +20,7 @@ export const saveNote = async (req, res, next) => {
         }
         res.redirect('/notes/view?key=' + req.body.notekey);
     } catch (error) {
-        next(err);
+        next(error);
     }
 };
 
