@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "cross-env DEBUG=notes:* nodemon app.mjs",
-    "server1": "cross-env DEBUG=notes:* PORT=3001 node ./bin/www",
-    "server2": "cross-env DEBUG=notes:* PORT=3002 node ./bin/www",
+    "server1": "cross-env DEBUG=notes:* PORT=3001 node app.mjs",
+    "server2": "cross-env DEBUG=notes:* PORT=3002 node app.mjs",
     "test": "node test/Note-test.mjs"
   },
   "dependencies": {
