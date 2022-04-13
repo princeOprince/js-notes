@@ -13,10 +13,6 @@ a:hover {
     color: darkorange;
 }
 
-li {
-    margin-bottom: 5px;
-}
-
 header {
     color: white;
     background: rgba(255, 255, 255, .2);
