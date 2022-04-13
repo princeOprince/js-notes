@@ -1,8 +1,11 @@
 <form action="/notes/destroy/confirm" method="post">
-    <input type="hidden" name="notekey" 
-        value="{{#if note }}{{notekey}}{{/if }}">
-    <p>Delete {{note.title}}?</p>
-    <br>
-    <input type="submit" value="DELETE">
-    <a href="/notes/view?key={{#if note }}{{notekey}}{{/if }}">Cancel</a>
+    <div class="container-fluid mt-5">
+        <input type="hidden" name="notekey" value="{{#if note }}{{notekey}}{{/if }}">
+        <p class="text-light">Delete {{note.title}}?</p>
+        <hr>
+        <div class="btn-group mt-2">
+            <button class="btn btn-outline-dark text-light border-light" type="submit">Delete</button>
+            <a href="/notes/view?key={{#if note }}{{notekey}}{{/if }}" class="btn btn-outline-dark text-light border-light" role="button">Cancel</a>
+        </div>
+    </div>
 </form>
