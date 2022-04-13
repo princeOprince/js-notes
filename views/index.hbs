@@ -1,8 +1,9 @@
-<ul>
-    {{#each notelist }}
-        <li>
-            {{ key }}:
-            <a href="/notes/view?key={{key}}">{{ title }}</a>
-        </li>
-    {{/each }}
-</ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 btn-group-vertical" role="group">
+            {{#each notelist }}
+                <a href="/notes/view?key={{key}}" class="btn btn-lg btn-block btn-outline-dark text-light">{{ title }}</a>
+            {{/each }}
+        </div>
+    </div>
+</div>
