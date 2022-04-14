@@ -32,7 +32,7 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/assets/vendor/bootstrap', 
-    express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
+    express.static(path.join(__dirname, 'theme', 'dist')));
 app.use('/assets/vendor/feather-icons', 
     express.static(path.join(__dirname, 'node_modules', 'feather-icons', 'dist')));
 
