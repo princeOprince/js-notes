@@ -7,7 +7,7 @@
             {{#if docreate }}
                 <div class="col-11">
                     <input type="text" name="notekey" placeholder="note key" name="notekey" value="" 
-                        class="bg-dark p-2 border border-light rounded text-light w-100">
+                        class="bg-light bg-opacity-10 p-2 border border-light rounded text-light w-100">
                 </div>
             {{else}}
                 {{#if note }}
@@ -24,17 +24,17 @@
             <div class="col-11">
                 <input type="text" id="title" name="title" placeholder="note title"
                     value="{{#if note }}{{note.title}}{{/if }}"
-                    class="bg-dark p-2 border border-light rounded text-light w-100">
+                    class="bg-light bg-opacity-10 p-2 border border-light rounded text-light w-100">
             </div>
         </div>
 
         <div class="row m-5">
             <textarea name="body" rows="5"
-                class="bg-dark p-2 border border-light rounded text-light w-100">{{#if note }}{{note.body}}{{/if }}</textarea>
+                class="bg-light bg-opacity-10 p-2 border border-light rounded text-light w-100">{{#if note }}{{note.body}}{{/if }}</textarea>
         </div>
 
         <div class="row m-5">
-            <button type="submit" class="btn btn-default text-light border-light">Submit</button>
+            <button type="submit" class="btn btn-default border-light">Submit</button>
         </div>
     </div>
 </form>
