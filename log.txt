@@ -1,0 +1,10 @@
+::1 - - [16/Apr/2022:22:36:49 +0000] "GET / HTTP/1.1" 304 -
+::1 - - [16/Apr/2022:22:36:49 +0000] "GET /assets/vendor/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 -
+::1 - - [16/Apr/2022:22:36:49 +0000] "GET /assets/stylesheets/style.css HTTP/1.1" 304 -
+::1 - - [16/Apr/2022:22:36:49 +0000] "GET /assets/vendor/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 -
+::1 - - [16/Apr/2022:22:36:49 +0000] "GET /assets/vendor/feather-icons/feather.js HTTP/1.1" 304 -
+::1 - - [16/Apr/2022:22:37:03 +0000] "GET /notes/add HTTP/1.1" 200 2724
+::1 - - [16/Apr/2022:22:37:03 +0000] "GET /assets/vendor/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 -
+::1 - - [16/Apr/2022:22:37:03 +0000] "GET /assets/stylesheets/style.css HTTP/1.1" 304 -
+::1 - - [16/Apr/2022:22:37:04 +0000] "GET /assets/vendor/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 -
+::1 - - [16/Apr/2022:22:37:04 +0000] "GET /assets/vendor/feather-icons/feather.js HTTP/1.1" 304 -

@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import hbs from 'hbs';
 import * as http from "http";
+import rfs from "rotating-file-stream";
 import __dirname  from './approotdir.mjs';
 import {
     normalisePort, onError, onListening, handle404, basicErrorHandler
@@ -25,7 +26,18 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, 'partials'));
 
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger(process.env.REQUEST_LOG_FORMAT || 'dev'));
+app.use(logger(process.env.REQUEST_LOG_FORMAT || 'dev', {
+    stream: process.env.REQUEST_LOG_FILE ?
+        rfs.createStream(process.env.REQUEST_LOG_FILE, {
+            size: "10M",                 // rotate every 10 Megabytes written
+            interval: "1d",             // rotate daily
+            compress: "gzip"       // compress rotated files
+        })
+        : process.stdout
+}));
+if (process.env.REQUEST_LOG_FILE) {
+    app.use(logger(process.env.REQUEST_LOG_FORMAT || 'dev'));
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
