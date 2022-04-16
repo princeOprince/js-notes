@@ -25,7 +25,7 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, 'partials'));
 
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(logger(process.env.REQUEST_LOG_FORMAT || 'dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
