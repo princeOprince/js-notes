@@ -18,6 +18,9 @@ import { router as indexRouter } from './routes/index.mjs';
 // import { default as express } usersRouter = require('./routes/users');
 import { router as notesRouter } from './routes/notes.mjs';
 
+import debug from 'debug';
+const dbg = debug('notes:app');
+
 export const app = express();
 
 // view engine setup
@@ -64,3 +67,6 @@ export const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+server.on('request', (req, res) => {
+    dbg(`${new Date().toISOString()} request ${req.method} ${req.url}`);
+});

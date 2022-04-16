@@ -1,7 +1,8 @@
 import { port } from "./app.mjs";
 import { server } from "./app.mjs";
 import debug from "debug";
-const dbg = debug('notes:server');
+const dbg = debug('notes:support');
+const dbgerror = debug('notes:error');
 
 export function normalisePort(val) {
     const port = parseInt(val);
@@ -15,6 +16,7 @@ export function normalisePort(val) {
 }
 
 export function onError(error) {
+    dbgerror(error);
     if (error.syscall !== 'listen') {
         throw error;
     }
