@@ -1,4 +1,4 @@
-import { NotesStore as notes } from '../app.mjs';
+import { NotesStore as notes } from '../models/notes-store.mjs';
 
 export const addNote = (req, res, next) => {
     res.render('noteedit', {
