@@ -1,8 +1,6 @@
-import { Note, AbstractNotesStore } from "./Note.mjs";
+import { default as Note, AbstractNotesStore } from "./Note.mjs";
 
-// const notes = [];
-
-export class InMemoryNotesStore extends AbstractNotesStore {
+export default class InMemoryNotesStore extends AbstractNotesStore {
     #notes = [];
 
     get notes() { return this.#notes }

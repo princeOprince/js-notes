@@ -1,4 +1,4 @@
-export class Note {
+export default class Note {
     #note_key;
     #note_title;
     #note_body;
