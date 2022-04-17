@@ -11,8 +11,12 @@ import {
     normalisePort, onError, onListening, handle404, basicErrorHandler
 } from "./appsupport.mjs";
 
-import { InMemoryNotesStore } from './models/notes-memory.mjs';
-export const NotesStore = new InMemoryNotesStore();
+import { useModel as useNotesModel } from './models/notes-store.mjs';
+useNotesModel(process.env.NOTES_MODEL 
+    ? process.env.NOTES_MODEL : 'memory')
+    .catch(error => { 
+        onError({ code: 'ENOTESTORE', error });
+    });
 
 import { router as indexRouter } from './routes/index.mjs';
 // import { default as express } usersRouter = require('./routes/users');
