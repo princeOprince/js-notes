@@ -17,6 +17,7 @@ export function normalisePort(val) {
 
 export function onError(error) {
     dbgerror(error);
+    
     if (error.syscall !== 'listen') {
         throw error;
     }
@@ -30,6 +31,9 @@ export function onError(error) {
         process.exit(1);
       case "EADDRINUSE":
         console.error(`${bind} is already in use`);
+        process.exit(1);
+      case "ENOTESTORE":
+        console.error(`Notes data store initialisation failed \n`, `Error code: ${error.code} \n`, `Cause ::: ${error.error}`);
         process.exit(1);
       default:
         throw error;
@@ -67,6 +71,6 @@ process.on('uncaughtException', (err) => {
     console.error(`Program crashed! \n --- ${(err.stack || err)}`);
 });
 
-process.on('unhandledRejection', (reason, p) => {
-    console.error(`Unhandled rejection at: ${p} \n --- Reason: ${reason}`);
+process.on('unhandledRejection', (reason, promise) => {
+    console.error(`Unhandled rejection at Promise:  \n`,`Error code: ${reason.code} \n`, `Cause ::: ${reason.error}`);
 });
