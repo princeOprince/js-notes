@@ -35,8 +35,9 @@ export default class FSNotesStore extends AbstractNotesStore {
         if (!files || typeof files === 'undefined') files = [];
         const notes = files.map(async fname => {
             const key = path.basename(fname, '.json');
-            const note = await readJSON(notesdir, key);
-            return note.key;
+            // const note = await readJSON(notesdir, key);
+            // return note.key;
+            return key;
         });
         return Promise.all(notes);
      }
