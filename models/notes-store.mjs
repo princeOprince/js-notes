@@ -9,7 +9,9 @@ export async function useModel(model) {
         const NotesStoreModule = await import(`./notes-${model}.mjs`);
         const NoteStoreClass = NotesStoreModule.default;
         NotesStore = new NoteStoreClass();
+        dbg(`${model}-notes datastore selected`);
     } catch(err) {
+        error(`${model}-notes datastore error`);
         throw new Error(`No recognised NotesStore in notes-${model}.mjs \n --- ${err}`);
     }
 }
