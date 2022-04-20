@@ -4,8 +4,11 @@
   "private": true,
   "scripts": {
     "start": "cross-env REQUEST_LOG_FORMAT=common REQUEST_LOG_FILE=debug.log DEBUG=notes:* nodemon app.mjs",
+    "fs-start": "cross-env REQUEST_LOG_FORMAT=common REQUEST_LOG_FILE=debug.log NOTES_MODEL=fs DEBUG=notes:* nodemon app.mjs",
     "server1": "cross-env DEBUG=notes:* PORT=3001 node app.mjs",
+    "fs-server1": "cross-env NOTES_MODEL=fs DEBUG=notes:* PORT=3001 node app.mjs",
     "server2": "cross-env DEBUG=notes:* PORT=3002 node app.mjs",
+    "fs-server2": "cross-env NOTES_MODEL=fs NOTES_FS_DIR=notes DEBUG=notes:* PORT=3002 node app.mjs",
     "test": "node test/Note-test.mjs"
   },
   "dependencies": {
