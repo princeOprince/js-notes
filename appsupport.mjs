@@ -69,8 +69,10 @@ export  function basicErrorHandler(err, req, res, next) {
 
 process.on('uncaughtException', (err) => {
     console.error(`Program crashed! \n --- ${(err.stack || err)}`);
+    process.exit(1);
 });
 
 process.on('unhandledRejection', (reason, promise) => {
     console.error(`Unhandled rejection at Promise:  \n`,`Error code: ${reason.code} \n`, `Cause ::: ${reason.error}`);
+    process.exit(1);
 });
