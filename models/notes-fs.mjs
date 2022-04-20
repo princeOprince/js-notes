@@ -66,7 +66,8 @@ async function readJSON(notesdir, key) {
 async function crupdate(key, title, body) {
     const notesdir =await notesDir();
     if (key.indexOf('/') >= 0) {
-        throw new Error(`key ${key} cannot contain '/'`);
+        error(`Invalid character '/' in key '${key}'`);
+        throw new Error(`Key ${key} cannot contain '/'`);
     }
     const note = new Note(key, title, body);
     const writeTo = filePath(notesdir, key);
