@@ -1,5 +1,6 @@
 import { port } from "./app.mjs";
 import { server } from "./app.mjs";
+import { NotesStore } from "./models/notes-store.mjs";
 import debug from "debug";
 const dbg = debug('notes:support');
 const dbgerror = debug('notes:error');
@@ -67,6 +68,13 @@ export  function basicErrorHandler(err, req, res, next) {
     res.render('error');
 }
 
+async function catchProcessDeath() {
+    dbg('urk...');
+    await NotesStore.close();
+    server.close();
+    process.exit(0);
+}
+
 process.on('uncaughtException', (err) => {
     console.error(`Program crashed! \n --- ${(err.stack || err)}`);
     process.exit(1);
@@ -75,4 +83,12 @@ process.on('uncaughtException', (err) => {
 process.on('unhandledRejection', (reason, promise) => {
     console.error(`Unhandled rejection at Promise:  \n`,`Error code: ${reason.code} \n`, `Cause ::: ${reason.error}`);
     process.exit(1);
+});
+
+process.on('SIGTERM', catchProcessDeath);
+process.on('SIGINT', catchProcessDeath);
+process.on('SIGHUP', catchProcessDeath);
+
+process.on('exit', () => {
+    dbg('exiting...');
 });
