@@ -10,6 +10,7 @@
     "fs-server1": "cross-env NOTES_MODEL=fs DEBUG=notes:* PORT=3001 node app.mjs",
     "server2": "cross-env DEBUG=notes:* PORT=3002 node app.mjs",
     "fs-server2": "cross-env NOTES_MODEL=fs NOTES_FS_DIR=notes DEBUG=notes:* PORT=3002 node app.mjs",
+    "sqlite3-setup": "sqlite3 notesdb.sqlite3 --init models/schema-sqlite3.sql",
     "test": "node test/Note-test.mjs"
   },
   "dependencies": {
