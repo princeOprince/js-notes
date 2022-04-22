@@ -25,9 +25,11 @@
     "feather-icons": "^4.29.0",
     "fs-extra": "^10.1.0",
     "hbs": "~4.0.4",
+    "js-yaml": "^4.1.0",
     "level": "^8.0.0",
     "morgan": "~1.9.1",
     "rotating-file-stream": "^3.0.3",
+    "sequelize": "^6.19.0",
     "sqlite3": "^5.0.4"
   },
   "devDependencies": {
