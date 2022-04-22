@@ -11,8 +11,7 @@ async function connectDB() {
     db = new Level(
         process.env.LEVELDB_LOCATION || "notes-level-data", {
         valueEncoding: "json"
-    }
-    );
+    });
     dbg('Level database', db.status);
     return db;
 }
