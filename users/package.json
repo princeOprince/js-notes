@@ -1,0 +1,28 @@
+{
+  "name": "user-auth-server",
+  "version": "0.0.1",
+  "description": "This directory holds the user information microservice for the notes app.",
+  "main": "user-server.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/princeOprince/js-notes.git#master"
+  },
+  "keywords": [
+    "user",
+    "auth",
+    "server",
+    "notes",
+    "js-notes",
+    "user-auth-server",
+    "user-notes-app"
+  ],
+  "author": "Prince O Prince",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/princeOprince/js-notes/issues"
+  },
+  "homepage": "https://github.com/princeOprince/js-notes/tree/master#readme"
+}
