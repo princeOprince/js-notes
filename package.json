@@ -37,6 +37,7 @@
     "mongodb": "^4.5.0",
     "morgan": "~1.9.1",
     "mysql2": "^2.3.3",
+    "pg": "^8.7.3",
     "rotating-file-stream": "^3.0.3",
     "sequelize": "^6.19.0",
     "sqlite3": "^5.0.4"
