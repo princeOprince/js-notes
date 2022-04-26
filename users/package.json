@@ -4,7 +4,7 @@
   "description": "This directory holds the user information microservice for the notes app.",
   "main": "user-server.mjs",
   "scripts": {
-    "start": "cross-env DEBUG=users:* PORT=5858 SEQUELIZE_CONNECT=sequelize-sqlite.yaml node user-server.mjs",
+    "start": "cross-env DEBUG=users:* PORT=5858 SEQUELIZE_CONNECT=sequelize-sqlite.yaml nodemon user-server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -35,6 +35,9 @@
     "restify": "^8.6.1",
     "restify-clients": "^3.1.0",
     "sequelize": "^6.19.0",
-    "sqlite": "^4.1.1"
+    "sqlite3": "^5.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
