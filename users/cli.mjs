@@ -1,4 +1,4 @@
-import program from "commander";
+import { program } from "commander";
 import restify from "restify-clients";
 
 let client_port, client_host, client_protocol, client_version = "*";
@@ -21,21 +21,89 @@ const client = (program) => {
     if (client_protocol) connect_url.protocol = client_protocol;
     if (client_host) connect_url.host = client_host;
     if (client_port) connect_url.port = client_port;
-    const client = restify.createJSONClient({
+    const client = restify.createJsonClient({
         url: connect_url.href,
         version: client_version
     });
     client.basicAuth(authid, authcode);
+    console.log(connect_url);
     return client;
 }
 
 program
-    .Option('-p, --port <port>',
+    .option('-p, --port <port>',
         'Port number for user server, if using localhost')
-    .Option('-h, --host <host>',
+    .option('-h, --host <host>',
         'Host for user server, if using localhost')
-    .Option('-u, --url <url>',
+    .option('-u, --url <url>',
         'Connection URL for user server, if using a remote server');
+
+program
+    .command('add <username>')
+    .description('Add a user to the user server')
+    .option('--password <password>', 
+        'Password for new user')
+    .option('--family-name <familyName>',
+        'Family name, or last name, of the user')
+    .option('--given-name <givenName>',
+        'Given name, or first name, of the user')
+    .option('--middle-name <middleName',
+        'Middle name of the user')
+    .option('--email <email>',
+        'Email address for the user')
+    .action((username, cmdObj) => {
+        const topost = {
+            username,
+            password: cmdObj.password,
+            provider: "local",
+            familyName: cmdObj.familyName,
+            givenName: cmdObj.givenName,
+            middleName: cmdObj.middleName,
+            emails: [],
+            photos: []
+        };
+        if (cmdObj.email) topost.emails.push(cmdObj.email);
+        console.log(topost);
+        
+        client(program).post('/create-user', topost,
+            (err, req, res, obj) => {
+                if (err) console.error(err);
+                else console.log(`Created`, obj);
+            });
+    });
+
+program
+    .command('find-or-create <username>')
+    .description('Add a user to the user server')
+    .option('--password <password>', 
+        'Password for new user')
+    .option('--family-name <familyName>',
+        'Family name, or last name, of the user')
+    .option('--given-name <givenName>',
+        'Given name, or first name, of the user')
+    .option('--middle-name <middleName',
+        'Middle name of the user')
+    .option('--email <email>',
+        'Email address for the user')
+    .action((username, cmdObj) => {
+        const topost = {
+            username,
+            password: cmdObj.password,
+            provider: "local",
+            familyName: cmdObj.familyName,
+            givenName: cmdObj.givenName,
+            middleName: cmdObj.middleName,
+            emails: [],
+            photos: []
+        };
+        if (cmdObj.email) topost.emails.push(cmdObj.email);
+        
+        client(program).post('/find-or-create', topost,
+            (err, req, res, obj) => {
+                if (err) console.error(err.body);
+                else console.log(`Found or Created`, obj);
+            });
+    });
 
 
 program.parse(process.argv);
