@@ -3,8 +3,8 @@ import {
     SQUser, connectDB, userParams, findOneUser, createUser, sanitizedUser 
 } from "./users-sequelize.mjs";
 import debug from "debug";
-const log = debug('users:service');
-const error = debug('users:error');
+const log = debug('users:server-service');
+const error = debug('users:server-error');
 
 // Set up the REST server
 
@@ -19,6 +19,41 @@ server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser({
     mapParams: true
 }));
+
+server.post('/create-user', async (req, res, next) => {
+    try {
+        await connectDB();
+        const result = await createUser(req);
+        res.contentType = 'json';
+        log(result);
+        res.send(result);
+        next(false);
+    } catch (err) {
+        error(err);
+        res.send(500, err);
+        next(false);
+    }
+});
+
+server.post('/find-or-create', async (req, res, next) => {
+    try {
+        await connectDB();
+        let user = await findOneUser(req.params.username);
+        if (!user) {
+            user = await createUser(req);
+            if (!user) {
+                error("No user created");
+               throw new Error('No user created');
+            }
+        }
+        res.contentType = 'json';
+        res.send(user);
+        next(false);
+    } catch (err) {
+        res.send(500, err);
+        next(false);
+    }
+});
 
 server.listen(process.env.PORT, 'localhost', () => {
     log(`${server.name} listening at ${server.url}`);
