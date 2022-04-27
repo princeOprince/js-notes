@@ -1,6 +1,6 @@
 import restify from "restify";
 import { 
-    create as createUser, findOrCreate, findUser, listUsers 
+    create as createUser, findOrCreate, findUser, listUsers, updateUser 
 } from "./user-controller.mjs";
 import debug from "debug";
 const log = debug('users:server-service');
@@ -20,13 +20,16 @@ server.use(restify.plugins.bodyParser({
     mapParams: true
 }));
 
+// Create a user
 server.post('/create-user', createUser);
-
 server.post('/find-or-create', findOrCreate);
 
+//  Read user data
 server.get('/find/:username', findUser);
-
 server.get('/list', listUsers);
+
+// Update user data
+server.post('/update-user/:username', updateUser);
 
 server.listen(process.env.PORT, 'localhost', () => {
     log(`${server.name} listening at ${server.url}`);
