@@ -95,3 +95,28 @@ export const updateUser = async (req, res, next) => {
         next(false);
     }
 }
+
+export const deleteUser = async (req, res, next) => {
+    try {
+        await connectDB();
+        const user = await SQUser.findOne({
+            where: {
+                username: req.params.username
+            }
+        });
+        if (!user) {
+            error(`Did not find requested user : ${req.params.username} to delete`);
+            res.send(404, 
+                new Error(`Did not find requested user : ${req.params.username} to delete`));
+        } else {
+            user.destroy();
+            res.contentType = "json";
+            res.send(req.params.username);
+            next(false);
+        }
+    } catch (err) {
+        error(err);
+        res.send(500, err);
+        next(false);
+    }
+}
