@@ -1,7 +1,7 @@
 import restify from "restify";
 import { 
     create as createUser, findOrCreate, findUser, listUsers, updateUser,
-    deleteUser 
+    deleteUser, checkPassword
 } from "./user-controller.mjs";
 import debug from "debug";
 const log = debug('users:server-service');
@@ -34,6 +34,9 @@ server.post('/update-user/:username', updateUser);
 
 // Delete user data
 server.del('/destroy/:username', deleteUser);
+
+// Check user password
+server.post('/password-check', checkPassword);
 
 server.listen(process.env.PORT, 'localhost', () => {
     log(`${server.name} listening at ${server.url}`);
