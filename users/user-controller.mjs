@@ -76,3 +76,22 @@ export const listUsers = async (req, res, next) => {
         next(false);
     }
 }
+
+export const updateUser = async (req, res, next) => {
+    try {
+        await connectDB();
+        let toupdate = userParams(req);
+        await SQUser.update(toupdate, { where: {
+                username: req.params.username
+            }
+        });
+        const result = await findOneUser(req.params.username);
+        res.contentType = 'json';
+        res.send(result);
+        next(false);
+    } catch (err) {
+        error(err);
+        res.send(500, err);
+        next(false);
+    }
+}
