@@ -12,8 +12,7 @@ export async function connectDB() {
     if (sequlz) return;
 
     const yamltext = await fs.readFile(process.env.SEQUELIZE_CONNECT, 'utf8');
-    log(yamltext);
-    const params = await jsyaml.load(yamltext, 'utf8');
+    const params = jsyaml.load(yamltext, 'utf8');
 
     if (process.env.SEQUELIZE_DBNAME) {
         params.dbname = process.env.SEQUELIZE_DBNAME;
@@ -60,8 +59,6 @@ export async function connectDB() {
         photos: DataTypes.STRING
     });
 
-    await SQUser.sync();
-
     try {
         await sequlz.authenticate();
         log('Connection has been established successfully.');
@@ -69,6 +66,8 @@ export async function connectDB() {
         error('Unable to connect to the database:', err);
         throw new Error(err);
     }
+
+    await SQUser.sync();
 }
 
 export async function close() {
@@ -118,11 +117,13 @@ export async function findOneUser(username) {
     let user = await SQUser.findOne({
         where: { username }
     });
+    log(user);
     return user ? sanitizedUser(user) : undefined;
 }
 
 export async function createUser(req) {
     let tocreate = userParams(req);
     await SQUser.create(tocreate);
-    return findOneUser(req.params.username);
+    const result = await findOneUser(req.params.username);
+    return result;
 }
