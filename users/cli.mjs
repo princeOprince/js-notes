@@ -151,11 +151,23 @@ program
 program
     .command('list-users')
     .description('List all users on the user server')
-    .action((cmdObj) => {
+    .action(() => {
         client(program).get('/list',
             (err, req, res, obj) => {
                 if(err) console.error(err.stack);
                 else console.log(obj);
+            });
+    });
+
+program
+    .command('destroy <username')
+    .description('Destroy a user on the user server')
+    .action((username) => {
+        client(program).del(`/destroy/${username}`,
+            (err, req, res, obj) => {
+                console.log('...finding', username);
+                if(err) console.error(err);
+                else console.log('Deleted user :', obj);
             });
     });
 
