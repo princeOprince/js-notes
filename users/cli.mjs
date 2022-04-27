@@ -160,7 +160,7 @@ program
     });
 
 program
-    .command('destroy <username')
+    .command('destroy <username>')
     .description('Destroy a user on the user server')
     .action((username) => {
         client(program).del(`/destroy/${username}`,
@@ -168,6 +168,17 @@ program
                 console.log('...finding', username);
                 if(err) console.error(err);
                 else console.log('Deleted user :', obj);
+            });
+    });
+
+program
+    .command('password-check <username> <password>')
+    .description('Check whether the user password checks out')
+    .action((username, password) => {
+        client(program).post(`/password-check`,
+            { username, password }, (err, req, res, obj) => {
+                if(err) console.error(err.stack);
+                else console.log(obj);
             });
     });
 
