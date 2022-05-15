@@ -1,8 +1,0 @@
-{
-    "scripts": {
-        "build": "cd bootstrap-5.1.3 && npm run dist",
-        "watch": "cd bootstap-5..1.3 && npm run watch",
-        "prebuild": "cp _custom.scss bootstrap.scss bootstrap-5.1.3/scss",
-        "postbuild": "mkdir -p dist && cp -r bootstrap-5.1.3/dist ."
-    }
-}
