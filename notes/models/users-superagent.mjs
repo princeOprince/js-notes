@@ -82,3 +82,11 @@ export async function findOrCreate(profile) {
     return res.body;
 }
 
+export async function listUsers() {
+  const res = await request
+    .get(reqURL('/list'))
+    .set('Content-Type', 'application/json')
+    .set('Accept', 'application/json')
+    .auth(authid, authcode);
+  return res.body;
+}
