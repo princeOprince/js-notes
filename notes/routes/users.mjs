@@ -25,3 +25,20 @@ export function ensureAuthenticated(req, res, next) {
     next(e);
   }
 }
+
+router.get('/login', (req, res, next) => {
+  try {
+    res.render('login', { 
+      title: "Login to Notes", user: req.user
+    });
+  } 
+  catch (e) {
+    error(e);
+    next(e);
+  }
+});
+
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: 'login'
+}));
