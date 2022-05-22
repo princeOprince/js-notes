@@ -75,3 +75,22 @@ passport.use(new LocalStrategy(
     }
   }
 ));
+
+passport.serializeUser((user, done) => {
+  try {
+    done(null, user.username);
+  } catch (e) {
+    error(e);
+    done(e);
+  }
+});
+
+passport.deserializeUser(async (username, done) => {
+  try {
+    const user = await usersModel.find(username);
+    done(null, user);
+  } catch (e) {
+    error(e);
+    done(e);
+  }
+})
