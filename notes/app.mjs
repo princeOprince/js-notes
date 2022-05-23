@@ -60,6 +60,15 @@ app.use('/assets/vendor/bootstrap',
 app.use('/assets/vendor/feather-icons', 
     express.static(path.join(__dirname, 'node_modules', 'feather-icons', 'dist')));
 
+app.use(session({
+  store: new FileStore({ path: "sessions" }),
+  secret: "keyboard mouse",
+  resave: true,
+  saveUninitialized: true,
+  name: sessionCookieName
+}));
+initPassport(app);
+
 //  router function lists
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
