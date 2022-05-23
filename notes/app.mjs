@@ -19,7 +19,7 @@ useNotesModel(process.env.NOTES_MODEL
     });
 
 import { router as indexRouter } from './routes/index.mjs';
-// import { default as express } usersRouter = require('./routes/users');
+import { router as usersRouter, initPassport } from './routes/users.mjs';
 import { router as notesRouter } from './routes/notes.mjs';
 
 import debug from 'debug';
