@@ -22,6 +22,11 @@ import { router as indexRouter } from './routes/index.mjs';
 import { router as usersRouter, initPassport } from './routes/users.mjs';
 import { router as notesRouter } from './routes/notes.mjs';
 
+import session from "express-session";
+import sessionFileStore from "session-file-store";
+const FileStore = sessionFileStore(session);
+export const sessionCookieName = "notescookie.sid";
+
 import debug from 'debug';
 const dbg = debug('notes:app');
 
