@@ -7,7 +7,7 @@ import { ensureAuthenticated } from './users.mjs';
 router.get('/add', ensureAuthenticated, notesController.addNote);
 
 //  Save Note (create / update)
-router.post('/save', notesController.saveNote);
+router.post('/save', ensureAuthenticated, notesController.saveNote);
 
 //  Read Note (read)
 router.get('/view', notesController.viewNote);
