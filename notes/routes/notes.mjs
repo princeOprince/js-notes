@@ -13,7 +13,7 @@ router.post('/save', ensureAuthenticated, notesController.saveNote);
 router.get('/view', notesController.viewNote);
 
 //  Edit Note (update)
-router.get('/edit', notesController.editNote);
+router.get('/edit', ensureAuthenticated, notesController.editNote);
 
 //  Ask to delete Note (destroy)
 router.get('/destroy', notesController.destroyNote);

@@ -53,9 +53,11 @@ export const editNote = async (req, res, next) => {
       title: note ? ("Edit " + note.title) : "Add a Note",
       docreate: false,
       notekey: req.query.key,
-      note: note
+      note: note,
+      user: req.user
     });
   } catch (error) {
+    err(error);
     next(error);
   }
 };
