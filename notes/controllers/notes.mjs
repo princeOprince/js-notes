@@ -68,9 +68,11 @@ export const destroyNote = async (req, res, next) => {
     res.render('notedestroy', {
       title: note ? `Delete ${note.title}` : "",
       notekey: req.query.key,
-      note: note
+      note: note,
+      user: req.user
     });
   } catch (error) {
+    err(error);
     next(error);
   }
 };
@@ -80,6 +82,7 @@ export const confirmNoteDestroy = async (req, res, next) => {
     await notes.destroy(req.body.notekey);
     res.redirect('/');
   } catch (error) {
+    err(error);
     next(error);
   }
 };

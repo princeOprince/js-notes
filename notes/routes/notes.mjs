@@ -16,7 +16,7 @@ router.get('/view', notesController.viewNote);
 router.get('/edit', ensureAuthenticated, notesController.editNote);
 
 //  Ask to delete Note (destroy)
-router.get('/destroy', notesController.destroyNote);
+router.get('/destroy', ensureAuthenticated, notesController.destroyNote);
 
 //  Really destroy Note (destroy)
-router.post('/destroy/confirm', notesController.confirmNoteDestroy);
+router.post('/destroy/confirm', ensureAuthenticated, notesController.confirmNoteDestroy);
