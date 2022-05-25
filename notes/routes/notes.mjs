@@ -1,9 +1,10 @@
 import express from 'express';
 export const router = express.Router();
 import * as notesController  from "../controllers/notes.mjs";
+import { ensureAuthenticated } from './users.mjs';
 
 //  Add Note (create)
-router.get('/add', notesController.addNote);
+router.get('/add', ensureAuthenticated, notesController.addNote);
 
 //  Save Note (create / update)
 router.post('/save', notesController.saveNote);

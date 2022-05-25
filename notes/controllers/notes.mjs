@@ -1,11 +1,15 @@
 import { NotesStore as notes } from '../models/notes-store.mjs';
+import debug from 'debug';
+const log = debug('notes:notes-controller');
+const err = debug('notes:error-notes-controller');
 
 export const addNote = (req, res, next) => {
     res.render('noteedit', {
         title: "Add a Note", 
         docreate: true,
         notekey: "",
-        note: undefined
+        note: undefined,
+        user: req.user
     });
 };
 
