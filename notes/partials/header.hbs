@@ -4,12 +4,27 @@
             <i data-feather="home"></i>
         </a>
         <div class="navbar-text col text-light">{{ title }}</div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLogin"
+            aria-controls="navbarLogin" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <a href="/notes/add" class="nav-item nav-link btn btn-light text-dark fw-bold">ADD Note</a>
-        </div>
+        {{#if user}}
+          <div class="collapse navbar-collapse justify-content-end" id="navbarLogin">
+            <span class="navbar-text text-dark col">
+              {{ title }}
+            </span>
+            <a href="/users/logout" class="btn btn-dark col-auto">
+              Log Out
+              <span class="badge badge-light">
+                {{ user.username }}
+              </span> 
+            </a>
+            <a href="/notes/add" class="nav-item nav-link btn btn-light text-dark fw-bold col-auto">ADD Note</a>
+          </div>
+        {{else}}
+          <div class="collapse navbar-collapse justify-content-end" id="navbarLogin">
+              <a href="/users/login" class="btn btn-primary text-dark fw-bold">Log in</a>
+          </div>
+        {{/if}}
     </nav>
 </header>
