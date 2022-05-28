@@ -1,5 +1,6 @@
 <form action="/notes/destroy/confirm" method="post">
     <div class="container-fluid mt-5">
+      {{#if user}}
         <input type="hidden" name="notekey" value="{{#if note }}{{notekey}}{{/if }}">
         <p class="text-light">Delete {{note.title}}?</p>
         <hr>
@@ -7,5 +8,8 @@
             <button class="btn btn-outline-light" type="submit">Delete</button>
             <a href="/notes/view?key={{#if note }}{{notekey}}{{/if }}" class="btn btn-outline-light" role="button">Cancel</a>
         </div>
+      {{else}}
+        {{> not-logged-in }}
+      {{/if}}
     </div>
 </form>
