@@ -7,7 +7,7 @@
     "fs-start": "cross-env REQUEST_LOG_FORMAT=common REQUEST_LOG_FILE=debug.log NOTES_MODEL=fs DEBUG=notes:* nodemon app.mjs",
     "level-start": "cross-env REQUEST_LOG_FORMAT=common REQUEST_LOG_FILE=debug.log NOTES_MODEL=level DEBUG=notes:* nodemon app.mjs",
     "sqlite3-start": "cross-env REQUEST_LOG_FORMAT=common REQUEST_LOG_FILE=debug.log NOTES_MODEL=sqlite3 DEBUG=notes:* nodemon app.mjs",
-    "sequelize-start": "cross-env SEQUELIZE_CONNECT=models/sequelize-sqlite.yaml NOTES_MODEL=sequelize DEBUG=notes:* nodemon app.mjs",
+    "sequelize-start": "cross-env SEQUELIZE_CONNECT=models/sequelize-sqlite.yaml NOTES_MODEL=sequelize USER_SERVICE_URL=http://localhost:5858 DEBUG=notes:* nodemon app.mjs",
     "mongodb-start": "cross-env MONGO_URL=mongodb://localhost/ MONGO_DBNAME=notesdb NOTES_MODEL=mongodb DEBUG=notes:* nodemon app.mjs",
     "server1": "cross-env DEBUG=notes:* PORT=3001 node app.mjs",
     "fs-server1": "cross-env NOTES_MODEL=fs DEBUG=notes:* PORT=3001 node app.mjs",
