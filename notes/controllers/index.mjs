@@ -10,7 +10,6 @@ export const index = async (req, res, next) => {
       return notes.read(key);
     });
     const notelist = await Promise.all(keyPromises);
-    log(notelist);
     res.render('index', {
       title: 'Notes',
       notelist: notelist,
