@@ -40,14 +40,15 @@ router.get('/login', (req, res, next) => {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: 'login'
+  failureRedirect: '/login'
 }));
 
-router.get('logout', (req, res, next) => {
+router.get('/logout', (req, res, next) => {
   try {
-    req.session.destroy();
-    req.logout();
-    res.clearCookie(sessionCookieName);
+    req.logout(() => {
+      req.session.destroy();
+      res.clearCookie(sessionCookieName);
+    });
     res.redirect('/');
   } catch (e) {
     error(e);
