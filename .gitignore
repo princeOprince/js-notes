@@ -64,4 +64,8 @@ typings/
 *.gz
 
 # System
+.DS_Store
 desktop.ini
+
+# package
+sessions/
