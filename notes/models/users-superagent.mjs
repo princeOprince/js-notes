@@ -47,7 +47,7 @@ export async function find(username) {
 
 export async function userPasswordCheck(username, password) {
     const res = await request
-        .get(reqURL(`/password-check`))
+        .post(reqURL(`/password-check`))
         .send( { username, password } )
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
@@ -57,7 +57,7 @@ export async function userPasswordCheck(username, password) {
 
 export async function findOrCreate(profile) {
     const res = await request
-        .get(reqURL(`/find-or-create`))
+        .post(reqURL(`/find-or-create`))
         .send( { 
             username: profile.id, 
             password: profile.password,
