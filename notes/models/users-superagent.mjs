@@ -45,15 +45,6 @@ export async function find(username) {
     return res.body;
 }
 
-export async function listUsers() {
-    const res = await request
-        .get(reqURL(`/list`))
-        .set('Content-Type', 'application/json')
-        .set('Accept', 'application/json')
-        .auth(authid, authcode);
-    return res.body;
-}
-
 export async function userPasswordCheck(username, password) {
     const res = await request
         .get(reqURL(`/password-check`))
